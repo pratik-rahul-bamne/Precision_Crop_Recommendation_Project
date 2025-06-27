@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Precision Crop Analytics: Next-Gen AI-powered crop recommendation and field analytics for farmers and agronomists. Enter soil, weather, and field details to get the best crop suggestion and actionable insights.">
+  <meta name="keywords" content="crop recommendation, agriculture, AI, analytics, farming, soil, weather, precision agriculture, satellite, pest, irrigation, yield prediction">
+  <meta name="author" content="Pratik Bamane, Vivek Jadhav">
+  <title>Precision Crop Analytics | AI Crop & Field Insights</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: linear-gradient(rgba(42,127,79,0.55), rgba(42,127,79,0.25)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      color: #2e2e2e;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(135deg, rgba(42,127,79,0.04) 0 2px, transparent 2px 20px);
+      z-index: 0;
+      animation: overlayMove 12s linear infinite;
+    }
+    @keyframes overlayMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+
+    /* --- Unique Futuristic Header Styles --- */
+    .header-unique {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 38px;
+      width: 100vw;
+      min-width: 100%;
+      overflow: visible;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      background: none;
+    }
+    .header-unique .header-bg-unique {
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 100vw;
+      min-width: 100%;
+      height: 270px;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 60% 40%, #6be585 0%, #2a7f4f 60%, #1b4d32 100%);
+      opacity: 0.93;
+      filter: blur(0.5px) brightness(1.08);
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      animation: headerGlow 7s ease-in-out infinite alternate;
+    }
+    @keyframes headerGlow {
+      0% { filter: blur(0.5px) brightness(1.08);}
+      100% { filter: blur(2.5px) brightness(1.13);}
+    }
+    .header-unique .header-content-unique {
+      position: relative;
+      z-index: 2;
+      padding: 70px 20px 0 20px;
+      width: 100%;
+      max-width: 950px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header-unique .logo-capsule {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 12px;
+      margin-top: 0;
+      background: linear-gradient(90deg, #eafff3 0%, #6be585 100%);
+      border-radius: 40px;
+      box-shadow: 0 4px 32px 0 rgba(42,127,79,0.13), 0 0px 0px 0 #fff;
+      padding: 0 32px 0 12px;
+      position: relative;
+      min-height: 70px;
+      border: 2.5px solid #eafff3;
+      animation: logoCapsulePop 1.2s cubic-bezier(.68,-0.55,.27,1.55) 1;
+    }
+    @keyframes logoCapsulePop {
+      0% { transform: scale(0.7) rotate(-6deg);}
+      60% { transform: scale(1.1) rotate(6deg);}
+      100% { transform: scale(1) rotate(0);}
+    }
+    .header-unique .logo-capsule .logo-icon-unique {
+      font-size: 3.2rem;
+      color: #2a7f4f;
+      background: linear-gradient(120deg, #eafff3 60%, #6be585 100%);
+      border-radius: 50%;
+      padding: 12px 16px 12px 14px;
+      box-shadow: 0 2px 12px rgba(42,127,79,0.10);
+      border: 2.5px solid #eafff3;
+      margin-right: 12px;
+      animation: logoPop 1.2s cubic-bezier(.68,-0.55,.27,1.55) 1;
+    }
+    .header-unique .logo-capsule .logo-title-unique {
+      font-size: 2.7rem;
+      font-weight: 900;
+      letter-spacing: 2.2px;
+      color: #2a7f4f;
+      text-shadow: 0 2px 12px rgba(42,127,79,0.13);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.1;
+      margin-right: 18px;
+      background: linear-gradient(90deg, #2a7f4f 0%, #6be585 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header-unique .logo-capsule .logo-rocket-unique {
+      font-size: 2.1em;
+      margin-left: 8px;
+      color: #f7b731;
+      filter: drop-shadow(0 2px 6px #6be58588);
+      animation: rocketFloat 2.5s infinite ease-in-out alternate;
+      transform: rotate(-12deg);
+    }
+    .header-unique .logo-capsule .logo-sparkle {
+      font-size: 1.7em;
+      color: #fff;
+      margin-left: 8px;
+      margin-right: -8px;
+      filter: drop-shadow(0 0 8px #6be585cc);
+      animation: sparkleTwinkle 2.2s infinite alternate;
+    }
+    @keyframes sparkleTwinkle {
+      0% { opacity: 0.7; transform: scale(1);}
+      50% { opacity: 1; transform: scale(1.2);}
+      100% { opacity: 0.7; transform: scale(1);}
+    }
+    @keyframes logoPop {
+      0% { transform: scale(0.7) rotate(-10deg);}
+      60% { transform: scale(1.2) rotate(10deg);}
+      100% { transform: scale(1) rotate(0);}
+    }
+    @keyframes rocketFloat {
+      0% { transform: translateY(0) rotate(-12deg);}
+      100% { transform: translateY(-12px) rotate(-12deg);}
+    }
+    .header-unique .tagline {
+      font-size: 1.25rem;
+      color: #fff;
+      margin: 0 0 10px 0;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-shadow: 0 2px 12px rgba(42,127,79,0.13);
+      background: rgba(42,127,79,0.13);
+      border-radius: 12px;
+      padding: 8px 22px 8px 22px;
+      display: inline-block;
+      margin-top: 8px;
+      box-shadow: 0 2px 10px rgba(42,127,79,0.09);
+      border-left: 4px solid #6be585;
+      border-right: 4px solid #eafff3;
+      animation: taglineFadeIn 1.2s;
+    }
+    @keyframes taglineFadeIn {
+      0% { opacity: 0; transform: translateY(-10px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    .header-unique .desc-adv-unique {
+      margin-top: 22px;
+      font-size: 1.13rem;
+      color: #eafff3;
+      opacity: 0.98;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(42,127,79,0.22);
+      border-radius: 18px;
+      padding: 18px 28px 16px 28px;
+      box-shadow: 0 2px 16px rgba(42,127,79,0.13);
+      border-left: 6px solid #6be585;
+      border-right: 6px solid #eafff3;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      position: relative;
+      animation: descAdvPop 1.2s;
+    }
+    .header-unique .desc-adv-unique:before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, #6be58522 0%, #2a7f4f11 100%);
+      border-radius: 18px;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .header-unique .desc-adv-unique > * {
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes descAdvPop {
+      0% { opacity: 0; transform: scale(0.97);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+    .header-unique .desc-adv-unique i {
+      font-size: 1.35em;
+      margin-top: 2px;
+      color: #6be585;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 4px #6be58588);
+      animation: infoPulse 2.2s infinite alternate;
+    }
+    @keyframes infoPulse {
+      0% { color: #6be585;}
+      100% { color: #eafff3;}
+    }
+    @media (max-width: 900px) {
+      .header-unique .header-content-unique {
+        padding-top: 38px;
+      }
+      .header-unique .logo-capsule .logo-title-unique {
+        font-size: 1.5rem;
+      }
+      .header-unique .header-bg-unique {
+        height: 180px;
+      }
+      .header-unique .desc-adv-unique {
+        font-size: 1.01rem;
+        padding: 12px 8px 10px 8px;
+      }
+    }
+    /* --- End Unique Header Styles --- */
+
+    /* --- Rest of the styles (unchanged) --- */
+    .container {
+      max-width: 1300px;
+      margin: 48px auto;
+      padding: 24px;
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 1;
+      position: relative;
+    }
+    .card {
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 10px 36px rgba(42,127,79,0.13);
+      padding: 40px 36px 36px 36px;
+      flex: 1 1 400px;
+      min-width: 360px;
+      max-width: 500px;
+      transition: transform 0.18s, box-shadow 0.18s;
+      position: relative;
+      z-index: 1;
+    }
+    .card:hover {
+      transform: translateY(-6px) scale(1.025);
+      box-shadow: 0 16px 48px rgba(42,127,79,0.17);
+    }
+    h2 {
+      font-size: 1.7rem;
+      color: #2a7f4f;
+      margin-bottom: 28px;
+      letter-spacing: 0.7px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 7px;
+      color: #256d45;
+      letter-spacing: 0.2px;
+      font-size: 1.07em;
+    }
+    /* --- Ensure all input fields and selects are the same size --- */
+    input[type="number"], input[type="text"], select {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 12px 14px 12px 42px;
+      border: 1.7px solid #b2dfc7;
+      border-radius: 10px;
+      font-size: 18px;
+      background: #f7fcfa;
+      transition: border 0.2s, box-shadow 0.2s;
+      outline: none;
+      color: #2e2e2e;
+      box-shadow: 0 1px 4px rgba(42,127,79,0.04);
+      height: 48px;
+      /* Make selects visually match inputs */
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,<svg width='16' height='16' fill='gray' xmlns='http://www.w3.org/2000/svg'><path d='M4 6l4 4 4-4'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 18px 18px;
+    }
+    select {
+      padding-right: 38px !important;
+    }
+    input[type="number"]:focus, select:focus, input[type="text"]:focus {
+      border: 1.7px solid #2a7f4f;
+      background: #eafff3;
+      box-shadow: 0 2px 8px rgba(42,127,79,0.09);
+    }
+    .form-group i {
+      position: absolute;
+      left: 12px;
+      top: 38px;
+      color: #6be585;
+      font-size: 1.15em;
+      pointer-events: none;
+    }
+    .btn {
+      background: linear-gradient(90deg, #2a7f4f 0%, #6be585 100%);
+      color: white;
+      padding: 16px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 12px;
+      box-shadow: 0 2px 10px rgba(42,127,79,0.10);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+      letter-spacing: 0.6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 52px;
+    }
+    .btn:active {
+      background: linear-gradient(90deg, #256d45 0%, #4fdc7b 100%);
+      box-shadow: 0 1px 4px rgba(42,127,79,0.13);
+      transform: scale(0.98);
+    }
+    .result-placeholder {
+      font-size: 19px;
+      color: #888;
+      margin-top: 28px;
+      text-align: center;
+      min-height: 56px;
+      transition: color 0.2s;
+    }
+    .result-success {
+      color: #2a7f4f;
+      font-size: 1.32rem;
+      font-weight: 700;
+      background: #eafff3;
+      border-radius: 10px;
+      padding: 22px 12px;
+      margin-top: 22px;
+      box-shadow: 0 2px 10px rgba(42,127,79,0.09);
+      animation: popIn 0.5s;
+    }
+    .result-error {
+      color: #d32f2f;
+      background: #fff0f0;
+      border-radius: 10px;
+      padding: 20px 12px;
+      margin-top: 22px;
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(211,47,47,0.09);
+      animation: popIn 0.5s;
+    }
+    .result-adv {
+      margin-top: 22px;
+      font-size: 1.09em;
+      color: #256d45;
+      background: #f7fcfa;
+      border-radius: 9px;
+      padding: 12px 10px;
+      box-shadow: 0 1px 6px rgba(42,127,79,0.08);
+      text-align: left;
+    }
+    .result-advanced {
+      margin-top: 18px;
+      font-size: 1.01em;
+      color: #1b4d32;
+      background: #e0f7ef;
+      border-radius: 8px;
+      padding: 10px 8px;
+      box-shadow: 0 1px 4px rgba(42,127,79,0.06);
+      text-align: left;
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.95);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+    @media (max-width: 1100px) {
+      .container {
+        flex-direction: column;
+        gap: 32px;
+        align-items: center;
+      }
+      .card {
+        max-width: 100%;
+      }
+    }
+    /* Footer styles */
+    .footer {
+      background: linear-gradient(90deg, #e0f7ef 0%, #b2dfc7 100%);
+      color: #256d45;
+      text-align: center;
+      padding: 22px 10px 14px 10px;
+      font-size: 1.09rem;
+      border-top-left-radius: 28px;
+      border-top-right-radius: 28px;
+      margin-top: auto;
+      box-shadow: 0 -2px 16px rgba(42,127,79,0.08);
+      letter-spacing: 0.22px;
+      z-index: 2;
+      position: relative;
+    }
+    .footer .devs {
+      margin: 0.7em 0 0 0;
+      font-size: 1em;
+      color: #256d45;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 22px;
+    }
+    .footer .dev {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .footer .dev i {
+      color: #2a7f4f;
+      font-size: 1.13em;
+    }
+    .footer a {
+      color: #2a7f4f;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .footer a:hover {
+      color: #256d45;
+      text-decoration: underline;
+    }
+    /* Tooltip styles */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 240px;
+      background-color: #2a7f4f;
+      color: #fff;
+      text-align: left;
+      border-radius: 9px;
+      padding: 10px 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 120%;
+      left: 50%;
+      margin-left: -120px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 1em;
+      box-shadow: 0 2px 10px rgba(42,127,79,0.15);
+    }
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+    /* Advanced: Progress bar styles */
+    .progress-bar-container {
+      width: 100%;
+      background: #e0f7ef;
+      border-radius: 8px;
+      margin: 18px 0 0 0;
+      height: 16px;
+      box-shadow: 0 1px 4px rgba(42,127,79,0.07);
+      overflow: hidden;
+      display: none;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #2a7f4f 0%, #6be585 100%);
+      width: 0%;
+      transition: width 0.4s;
+    }
+    /* Advanced: Animated icon for result */
+    .result-success .fa-crown {
+      color: #f7b731;
+      margin-right: 6px;
+      animation: crownPop 0.7s;
+    }
+    @keyframes crownPop {
+      0% { transform: scale(0.7) rotate(-10deg);}
+      60% { transform: scale(1.2) rotate(10deg);}
+      100% { transform: scale(1) rotate(0);}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Unique, Futuristic Header Start -->
+<div class="header-unique">
+  <div class="header-bg-unique"></div>
+  <div class="header-content-unique">
+    <div class="logo-capsule">
+      <span class="logo-icon-unique"><i class="fa-solid fa-seedling"></i></span>
+      <span class="logo-title-unique">Precision Crop Analytics</span>
+      <span class="logo-rocket-unique"><i class="fa-solid fa-rocket"></i></span>
+      <span class="logo-sparkle"><i class="fa-solid fa-star"></i></span>
+    </div>
+    <div class="tagline">
+      <i class="fa-solid fa-bolt"></i> Next-Gen AI for Smart Farming <i class="fa-solid fa-bolt"></i>
+    </div>
+    <div class="desc-adv-unique">
+      <i class="fa-solid fa-circle-info"></i>
+      <span>
+        <b>Welcome to the future of agriculture!</b> <br>
+        <span style="color:#b2dfc7;">Precision Crop Analytics</span> uses advanced AI, satellite data, and real-time analytics to recommend the best crop for your field and deliver actionable insights.<br>
+        <span style="color:#f7b731;"><b>New:</b></span> <b>Field location</b>, <b>satellite NDVI</b>, <b>pest risk</b>, and <b>irrigation advice</b> for even more accurate, futuristic results!
+      </span>
+    </div>
+  </div>
+</div>
+<!-- Unique, Futuristic Header End -->
+
+<div class="container">
+  <div class="card">
+    <h2><i class="fa-solid fa-seedling"></i> Input Details</h2>
+    <form id="cropForm" autocomplete="off" onsubmit="event.preventDefault(); analyze();">
+      <div class="form-group">
+        <label for="nitrogen" class="tooltip">
+          <i class="fa-solid fa-flask-vial"></i> Nitrogen (mg/kg)
+          <span class="tooltiptext">Essential for plant growth and leaf development.</span>
+        </label>
+        <input id="nitrogen" type="number" min="0" max="200" step="0.1" placeholder="e.g. 90" required />
+      </div>
+      <div class="form-group">
+        <label for="phosphorus" class="tooltip">
+          <i class="fa-solid fa-flask"></i> Phosphorus (mg/kg)
+          <span class="tooltiptext">Important for root and flower development.</span>
+        </label>
+        <input id="phosphorus" type="number" min="0" max="200" step="0.1" placeholder="e.g. 40" required />
+      </div>
+      <div class="form-group">
+        <label for="potassium" class="tooltip">
+          <i class="fa-solid fa-flask"></i> Potassium (mg/kg)
+          <span class="tooltiptext">Helps in water regulation and disease resistance.</span>
+        </label>
+        <input id="potassium" type="number" min="0" max="200" step="0.1" placeholder="e.g. 40" required />
+      </div>
+      <div class="form-group">
+        <label for="temperature" class="tooltip">
+          <i class="fa-solid fa-temperature-half"></i> Temperature (°C)
+          <span class="tooltiptext">Average temperature of your field area.</span>
+        </label>
+        <input id="temperature" type="number" min="0" max="50" step="0.1" placeholder="e.g. 27" required />
+      </div>
+      <div class="form-group">
+        <label for="humidity" class="tooltip">
+          <i class="fa-solid fa-droplet"></i> Humidity (%)
+          <span class="tooltiptext">Average relative humidity of your field area.</span>
+        </label>
+        <input id="humidity" type="number" min="0" max="100" step="0.1" placeholder="e.g. 80" required />
+      </div>
+      <div class="form-group">
+        <label for="soil_type" class="tooltip">
+          <i class="fa-solid fa-mountain"></i> Soil Type
+          <span class="tooltiptext">Choose the soil type that best matches your field.</span>
+        </label>
+        <select id="soil_type" required>
+          <option value="">Select soil type</option>
+          <option value="Sandy">Sandy</option>
+          <option value="Loamy">Loamy</option>
+          <option value="Clay">Clay</option>
+          <option value="Silty">Silty</option>
+          <option value="Peaty">Peaty</option>
+          <option value="Chalky">Chalky</option>
+          <option value="Saline">Saline</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="rainfall" class="tooltip">
+          <i class="fa-solid fa-cloud-rain"></i> Rainfall (mm/year)
+          <span class="tooltiptext">Average annual rainfall in your area.</span>
+        </label>
+        <input id="rainfall" type="number" min="0" max="5000" step="0.1" placeholder="e.g. 1200" required />
+      </div>
+      <div class="form-group">
+        <label for="location" class="tooltip">
+          <i class="fa-solid fa-location-dot"></i> Field Location (Lat,Lng)
+          <span class="tooltiptext">Enter your field's latitude and longitude for satellite-based insights (optional).</span>
+        </label>
+        <input id="location" type="text" pattern="^-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?$" placeholder="e.g. 18.5204, 73.8567" />
+      </div>
+      <div class="form-group">
+        <label for="ndvi" class="tooltip">
+          <i class="fa-solid fa-satellite-dish"></i> NDVI (Satellite Vegetation Index)
+          <span class="tooltiptext">Normalized Difference Vegetation Index (0-1). Optional, for advanced health analysis.</span>
+        </label>
+        <input id="ndvi" type="number" min="0" max="1" step="0.01" placeholder="e.g. 0.72" />
+      </div>
+      <div class="form-group">
+        <label for="pest_risk" class="tooltip">
+          <i class="fa-solid fa-bug"></i> Pest Risk Level
+          <span class="tooltiptext">Estimated pest risk in your area. Optional.</span>
+        </label>
+        <select id="pest_risk">
+          <option value="">Select risk</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="irrigation" class="tooltip">
+          <i class="fa-solid fa-water"></i> Irrigation Availability
+          <span class="tooltiptext">Is irrigation available for your field? Optional.</span>
+        </label>
+        <select id="irrigation">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+          <option value="Limited">Limited</option>
+        </select>
+      </div>
+      <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass-chart"></i> Analyze & Predict</button>
+      <div class="progress-bar-container" id="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </form>
+    <div class="result-adv" id="input-tips">
+      <i class="fa-solid fa-lightbulb"></i>
+      <b>Tip:</b> For best results, use recent soil test values, local weather data, and (optionally) your field's location for satellite-based insights.
+    </div>
+  </div>
+  <div class="card">
+    <h2><i class="fa-solid fa-leaf"></i> Result & Insights</h2>
+    <div class="result-placeholder" id="result">Please fill in the details and click <b>Analyze & Predict</b> to get your crop recommendation and advanced insights.</div>
+    <div class="result-adv" id="adv-details" style="display:none;"></div>
+    <div class="result-advanced" id="advanced-details" style="display:none;"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div>
+    <strong>Developed by:</strong>
+  </div>
+  <div class="devs">
+    <span class="dev"><i class="fa-solid fa-user"></i> Pratik Bamane (<a href="mailto:pratikrbamne@gmail.com">pratikrbamne@gmail.com</a>)</span>
+    <span class="dev"><i class="fa-solid fa-user"></i> Vivek Jadhav (<a href="mailto:vivekjadhav@gmail.com">vivekjadhav@gmail.com</a>)</span>
+  </div>
+  <div style="margin-top:0.7em;font-size:0.93em;color:#2a7f4f;">
+    &copy; 2024 Precision Crop Analytics
+  </div>
+</footer>
+
+<script>
+// Advanced: Progress bar logic
+function showProgressBar() {
+  const barContainer = document.getElementById('progress-bar-container');
+  const bar = document.getElementById('progress-bar');
+  barContainer.style.display = 'block';
+  bar.style.width = '0%';
+  setTimeout(() => { bar.style.width = '40%'; }, 100);
+  setTimeout(() => { bar.style.width = '70%'; }, 600);
+}
+function hideProgressBar() {
+  const barContainer = document.getElementById('progress-bar-container');
+  const bar = document.getElementById('progress-bar');
+  bar.style.width = '100%';
+  setTimeout(() => { barContainer.style.display = 'none'; bar.style.width = '0%'; }, 500);
+}
+
+function validateInputs(data) {
+  for (const key in data) {
+    if (
+      (key !== "location" && key !== "ndvi" && key !== "pest_risk" && key !== "irrigation") &&
+      (data[key] === "" || data[key] === null || (typeof data[key] === "string" && isNaN(data[key]) && key !== "soil_type"))
+    ) {
+      return false;
+    }
+  }
+  // Soil type must not be empty
+  if (!data.soil_type) return false;
+  // If location is provided, validate format
+  if (data.location && !/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/.test(data.location)) return false;
+  // If NDVI is provided, must be between 0 and 1
+  if (data.ndvi && (isNaN(data.ndvi) || data.ndvi < 0 || data.ndvi > 1)) return false;
+  return true;
+}
+
+function showResult(message, type, advDetails = null, advancedDetails = null) {
+  const resultDiv = document.getElementById('result');
+  const advDiv = document.getElementById('adv-details');
+  const advancedDiv = document.getElementById('advanced-details');
+  if (type === 'success') {
+    resultDiv.className = 'result-placeholder result-success';
+    resultDiv.innerHTML = `<i class="fa-solid fa-crown"></i> ${message}`;
+    if (advDetails) {
+      advDiv.style.display = 'block';
+      advDiv.innerHTML = `<i class="fa-solid fa-circle-info"></i> <b>Why this crop?</b><br>${advDetails}`;
+    } else {
+      advDiv.style.display = 'none';
+      advDiv.innerHTML = '';
+    }
+    if (advancedDetails) {
+      advancedDiv.style.display = 'block';
+      advancedDiv.innerHTML = advancedDetails;
+    } else {
+      advancedDiv.style.display = 'none';
+      advancedDiv.innerHTML = '';
+    }
+  } else if (type === 'error') {
+    resultDiv.className = 'result-placeholder result-error';
+    resultDiv.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${message}`;
+    advDiv.style.display = 'none';
+    advDiv.innerHTML = '';
+    advancedDiv.style.display = 'none';
+    advancedDiv.innerHTML = '';
+  } else {
+    resultDiv.className = 'result-placeholder';
+    resultDiv.innerHTML = message;
+    advDiv.style.display = 'none';
+    advDiv.innerHTML = '';
+    advancedDiv.style.display = 'none';
+    advancedDiv.innerHTML = '';
+  }
+}
+
+function analyze() {
+  const data = {
+    nitrogen: document.getElementById('nitrogen').value.trim(),
+    phosphorus: document.getElementById('phosphorus').value.trim(),
+    potassium: document.getElementById('potassium').value.trim(),
+    temperature: document.getElementById('temperature').value.trim(),
+    humidity: document.getElementById('humidity').value.trim(),
+    soil_type: document.getElementById('soil_type').value,
+    rainfall: document.getElementById('rainfall').value.trim(),
+    location: document.getElementById('location').value.trim(),
+    ndvi: document.getElementById('ndvi').value.trim(),
+    pest_risk: document.getElementById('pest_risk').value,
+    irrigation: document.getElementById('irrigation').value
+  };
+
+  if (!validateInputs(data)) {
+    showResult('Please fill in all required fields with valid values. Check optional fields for correct format.', 'error');
+    return;
+  }
+
+  showResult('<i class="fa-solid fa-spinner fa-spin"></i> Analyzing your data, please wait...', '');
+  showProgressBar();
+
+  fetch('http://127.0.0.1:5000/predict', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (!response.ok) throw new Error('Network response was not ok');
+    return response.json();
+  })
+  .then(result => {
+    hideProgressBar();
+    if (result.status === 'success') {
+      // Advanced: Show why this crop is recommended if backend provides explanation
+      let advDetails = '';
+      if (result.explanation) {
+        advDetails = result.explanation;
+      } else if (result.recommended_crop) {
+        advDetails = `This crop matches your soil type, rainfall, and nutrient profile for optimal yield.`;
+      }
+      // Advanced: Show additional insights if available
+      let advancedDetails = '';
+      if (result.advanced_insights) {
+        advancedDetails = `<i class="fa-solid fa-chart-line"></i> <b>Advanced Insights:</b><br>${result.advanced_insights}`;
+      } else {
+        // Compose advanced details from optional fields if present
+        let advArr = [];
+        if (result.ndvi_analysis) advArr.push(`<b>NDVI Analysis:</b> ${result.ndvi_analysis}`);
+        if (result.pest_advice) advArr.push(`<b>Pest Risk:</b> ${result.pest_advice}`);
+        if (result.irrigation_advice) advArr.push(`<b>Irrigation:</b> ${result.irrigation_advice}`);
+        if (result.yield_prediction) advArr.push(`<b>Estimated Yield:</b> ${result.yield_prediction}`);
+        if (advArr.length > 0) advancedDetails = advArr.join('<br>');
+      }
+      showResult(
+        `🌾 Recommended Crop: <strong>${result.recommended_crop}</strong> <br><span style="font-size:0.97em;color:#256d45;">Happy Advanced Farming!</span>`,
+        'success',
+        advDetails,
+        advancedDetails
+      );
+    } else {
+      showResult(`Error: ${result.message}`, 'error');
+    }
+  })
+  .catch(err => {
+    hideProgressBar();
+    showResult('Failed to connect to backend. Please ensure the server is running.', 'error');
+  });
+}
+
+// Advanced: Autofill demo data for quick testing
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.location.hash === "#demo") {
+    document.getElementById('nitrogen').value = 90;
+    document.getElementById('phosphorus').value = 40;
+    document.getElementById('potassium').value = 40;
+    document.getElementById('temperature').value = 27;
+    document.getElementById('humidity').value = 80;
+    document.getElementById('soil_type').value = "Loamy";
+    document.getElementById('rainfall').value = 1200;
+    document.getElementById('location').value = "18.5204, 73.8567";
+    document.getElementById('ndvi').value = 0.72;
+    document.getElementById('pest_risk').value = "Low";
+    document.getElementById('irrigation').value = "Yes";
+    showResult('Demo values loaded. Click <b>Analyze & Predict</b> to see a sample advanced recommendation.', '');
+  }
+});
+</script>
+
+</body>
+</html>
